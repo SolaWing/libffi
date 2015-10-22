@@ -228,9 +228,9 @@ ARM_FUNC_START(ffi_closure_SYSV)
 	cfi_startproc
 	stmdb	sp!, {r0-r3}			@ save argument regs
 	cfi_adjust_cfa_offset(16)
-	ldr	r0, [ip, #FFI_TRAMPOLINE_SIZE]	  @ load cif
-	ldr	r1, [ip, #FFI_TRAMPOLINE_SIZE+4]  @ load fun
-	ldr	r2, [ip, #FFI_TRAMPOLINE_SIZE+8]  @ load user_data
+	ldr	r0, [ip, #FFI_TRAMPOLINE_SIZE-4]	  @ load cif
+	ldr	r1, [ip, #FFI_TRAMPOLINE_SIZE]  @ load fun
+	ldr	r2, [ip, #FFI_TRAMPOLINE_SIZE+4]  @ load user_data
 0:
 	add	ip, sp, #16			@ compute entry sp
 	sub	sp, sp, #64+32			@ allocate frame
